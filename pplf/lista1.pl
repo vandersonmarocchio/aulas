@@ -132,15 +132,40 @@ ancestral(X,Y) :-
   ancestral(A,Y).
 */
 
+/* ex 2.7
 triangulo(A, B ,C, T) :-
-  A = B;
-  B = C;
-  A = C;
+  A = B,
+  B = C,
+  A = C,
   T = 'equilatero'.
 
+triangulo(A, B ,C, T) :-
+  A \= B,
+  B = C,
+  T = 'isosceles';
+  C \= B,
+  B = A,
+  T = 'isosceles';
+  C \= B,
+  A = C,
+  T = 'isosceles'.
 
 triangulo(A, B ,C, T) :-
-    A \= B;
-    B = C;
-    A \= C;
-    T = 'isosceles'.
+  A \= B,
+  B \= C,
+  A \= C,
+  T = 'escaleno'.
+*/
+
+/* ex 2.8
+soma_quadrado_maiores(A,B,C,S) :-
+  A > C,
+  B > C,
+  S is A * A + B * B;
+  A > B,
+  C > B,
+  S is A * A + C * C;
+  B > A,
+  C > A,
+  S is B * B + C * C.
+*/
