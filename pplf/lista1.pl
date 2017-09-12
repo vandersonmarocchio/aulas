@@ -134,26 +134,26 @@ ancestral(X,Y) :-
 
 /* ex 2.7
 triangulo(A, B ,C, T) :-
-  A = B,
-  B = C,
-  A = C,
+  A == B,
+  B == C,
+  A == C,
   T = 'equilatero'.
 
 triangulo(A, B ,C, T) :-
-  A \= B,
-  B = C,
+  A \== B,
+  B == C,
   T = 'isosceles';
-  C \= B,
-  B = A,
+  C \== B,
+  B == A,
   T = 'isosceles';
-  C \= B,
-  A = C,
+  C \== B,
+  A == C,
   T = 'isosceles'.
 
 triangulo(A, B ,C, T) :-
-  A \= B,
-  B \= C,
-  A \= C,
+  A \== B,
+  B \== C,
+  A \== C,
   T = 'escaleno'.
 */
 
