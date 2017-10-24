@@ -1,9 +1,7 @@
-
 /**
  * @author Diogo Almeida
  * @since 23/10/2017
  */
-
 public class Carro {
     private String modelo;
     private String cor;
@@ -75,7 +73,7 @@ public class Carro {
     }
 
     public void acelerar(double velocidade) {
-        if (isIgnicao() == false) System.out.println("Ligue o carro primeiro!");
+        if (!isIgnicao()) System.out.println("Ligue o carro primeiro!");
             else if ((this.velocidade + velocidade) > (getMax_velocidade())) {
                 System.out.println("Erro!! Velocidade maior que a potencia do carro!");
                 System.out.println("O carro só pode atingir até " + getMax_velocidade() + ".");
@@ -86,7 +84,7 @@ public class Carro {
     }
 
     public void frear(double velocidade){
-        if (isIgnicao() == false) System.out.println("Ligue o carro primeiro!");
+        if (!isIgnicao()) System.out.println("Ligue o carro primeiro!");
             if (velocidade>=60){
                 System.out.println("Airbag disparado!!");
                 this.velocidade = 0;
@@ -99,9 +97,9 @@ public class Carro {
     }
 
     public void verEstado(){
-        if (this.velocidade == 0 && this.ignicao == true){
+        if (this.velocidade == 0 && this.ignicao){
             System.out.println("Carro parado e ligado.");
-        }   else if (this.velocidade == 0 && this.ignicao == false)
+        }   else if (this.velocidade == 0)
                 System.out.println("Carro desligado.");
                 else if (this.velocidade > 0){
                     System.out.println("Em movimento a " + this.velocidade + "km/h.");
@@ -112,20 +110,20 @@ public class Carro {
         System.out.println("\nModelo: " + getModelo());
         System.out.println("Cor: " + getCor());
         System.out.println("Motor: " + getMotor());
-        if (isIgnicao()==true) System.out.println("Estado: Ligado");
+        if (isIgnicao()) System.out.println("Estado: Ligado");
         else System.out.println("Estado: Desligado");
         System.out.println("Velocidade Máxima: " + getMax_velocidade());
         verEstado();
     }
 
     public void ligar(){
-        if (getVelocidade()>0 || this.ignicao == true ) System.out.println("O carro já está ligado!");
+        if (getVelocidade()>0 || this.ignicao) System.out.println("O carro já está ligado!");
         else this.ignicao = true;
     }
 
     public void desligar(){
         if (getVelocidade()>0) System.out.println("O carro está em movimento, pare o carro para desligar!!");
-        else if (this.ignicao == false) System.out.println("O carro já está desligado!");
+        else if (!this.ignicao) System.out.println("O carro já está desligado!");
         else this.ignicao = false;
     }
 }
