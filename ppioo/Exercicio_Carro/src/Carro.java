@@ -44,16 +44,17 @@ public class Carro {
     }
 
     public void acelerar(double velocidade) {
-        if ((this.velocidade += velocidade) > (this.motor * 110.00)) {
-            System.out.printf("Erro, velocidade maior que a potencia do carro!");
+        if ((this.velocidade + velocidade) > (this.motor * 110.00)) {
+            System.out.println("Erro, velocidade maior que a potencia do carro!");
+            System.out.println("O carro só pode atingir até " + (this.motor * 110.00));
         } else if (velocidade < 0) {
-                System.out.printf("Erro, numero incorreto!");
+                System.out.println("Erro, numero incorreto!");
           } else this.velocidade += velocidade;
     }
 
     public void frear(double velocidade){
         if (velocidade>=60){
-            System.out.println("Airbag disparado!! O carro parou");
+            System.out.println("Airbag disparado!!");
             this.velocidade = 0;
         } else if (velocidade < 0){
             System.out.printf("Erro, numero incorreto!");
@@ -63,12 +64,19 @@ public class Carro {
         }
     }
 
-    public void verEstado(double velocidade){
-        if (velocidade == 0){
-            System.out.println("Parado!");
-        } else if (velocidade > 0){
-            System.out.printf("Em movimento a" + velocidade + "km/h.");
+    public void verEstado(){
+        if (this.velocidade == 0){
+            System.out.println("Status: Parado");
+        } else if (this.velocidade > 0){
+            System.out.println("Em movimento a " + this.velocidade + "km/h.");
         }
+    }
+
+    public void status(){
+        System.out.println("Modelo: " + this.modelo);
+        System.out.println("Cor: " + this.cor);
+        System.out.println("Motor: " + this.motor);
+        verEstado();
     }
 
  }
