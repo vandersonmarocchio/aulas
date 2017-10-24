@@ -1,14 +1,21 @@
 import java.util.Scanner;
 
+/**
+ * Classe Main
+ * @author Diogo almeida
+ * @since 23/10/2017
+ */
 public class Main {
 
     public static void main(String[] args) {
         Carro meuCarro = new Carro("UNO", "Prata",true,1.4);
         Scanner scanner = new Scanner(System.in);
         int x = 1;
+
         System.out.println("Carro ligado, digite uma velocidade para começar: (Km/h)");
         meuCarro.setVelocidade(scanner.nextDouble());
         meuCarro.detalhes();
+
         while (x!=0) {
             System.out.println("\n\nMenu:");
             System.out.println("1 - Ligar");

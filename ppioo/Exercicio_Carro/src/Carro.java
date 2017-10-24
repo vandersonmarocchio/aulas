@@ -1,3 +1,9 @@
+
+/**
+ * @author Diogo Almeida
+ * @since 23/10/2017
+ */
+
 public class Carro {
     private String modelo;
     private String cor;
@@ -11,11 +17,10 @@ public class Carro {
         this.cor = cor;
         this.motor = motor;
         this.ignicao = ignicao;
-        this.max_velocidade = this.motor *110;
+        this.max_velocidade = this.motor * 110.00;
     }
 
     public Carro(){
-        this(null, null,false ,0);
     }
 
     public String getModelo() {
