@@ -44,7 +44,7 @@ public class Carro {
     }
 
     public void acelerar(double velocidade) {
-        if (velocidade > this.motor * 110.00) {
+        if ((this.velocidade += velocidade) > (this.motor * 110.00)) {
             System.out.printf("Erro, velocidade maior que a potencia do carro!");
         } else if (velocidade < 0) {
                 System.out.printf("Erro, numero incorreto!");
