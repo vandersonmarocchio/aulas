@@ -2,12 +2,20 @@ public class Carro {
     private String modelo;
     private String cor;
     private double motor;
+    private boolean ignicao;
     private double velocidade;
+    private double max_velocidade;
 
-    public Carro(String modelo, String cor, double motor) {
+    public Carro(String modelo, String cor, boolean ignicao, double motor) {
         this.modelo = modelo;
         this.cor = cor;
         this.motor = motor;
+        this.ignicao = ignicao;
+        this.max_velocidade = this.motor *110;
+    }
+
+    public Carro(){
+        this(null, null,false ,0);
     }
 
     public String getModelo() {
@@ -40,43 +48,79 @@ public class Carro {
     }
 
     public void setVelocidade(double velocidade) {
-        this.velocidade = velocidade;
+        if (velocidade > this.motor * 110.00){
+            System.out.println("Velocidade maior que a potencia do carro");
+        } else this.velocidade = velocidade;
+    }
+
+    public double getMax_velocidade() {
+        return max_velocidade;
+    }
+
+    public void setMax_velocidade(double max_velocidade) {
+        this.max_velocidade = max_velocidade;
+    }
+
+    public boolean isIgnicao(){
+        return ignicao;
+    }
+
+    public void setIgnicao(boolean ignicao) {
+        this.ignicao = ignicao;
     }
 
     public void acelerar(double velocidade) {
-        if ((this.velocidade + velocidade) > (this.motor * 110.00)) {
-            System.out.println("Erro, velocidade maior que a potencia do carro!");
-            System.out.println("O carro só pode atingir até " + (this.motor * 110.00));
-        } else if (velocidade < 0) {
-                System.out.println("Erro, numero incorreto!");
-          } else this.velocidade += velocidade;
+        if (isIgnicao() == false) System.out.println("Ligue o carro primeiro!");
+            else if ((this.velocidade + velocidade) > (getMax_velocidade())) {
+                System.out.println("Erro!! Velocidade maior que a potencia do carro!");
+                System.out.println("O carro só pode atingir até " + getMax_velocidade() + ".");
+                this.velocidade = getMax_velocidade();
+            }   else if (velocidade < 0) {
+                    System.out.println("Erro, número inválido!");
+                }   else this.velocidade += velocidade;
     }
 
     public void frear(double velocidade){
-        if (velocidade>=60){
-            System.out.println("Airbag disparado!!");
-            this.velocidade = 0;
-        } else if (velocidade < 0){
-            System.out.printf("Erro, numero incorreto!");
-            } else this.velocidade -= velocidade;
-        if (this.velocidade <0){
-            this.velocidade = 0;
-        }
+        if (isIgnicao() == false) System.out.println("Ligue o carro primeiro!");
+            if (velocidade>=60){
+                System.out.println("Airbag disparado!!");
+                this.velocidade = 0;
+            }   else if (velocidade < 0) System.out.println("Erro, número inválido!");
+                    else if (this.velocidade <= 0) System.out.println("O carro está parado, impossível frear mais!!");
+                        else if (this.velocidade < velocidade) {
+                            System.out.println("Velocidade de frenagem maior que a velocidade atual");
+                            this.velocidade = 0;
+                        }   else this.velocidade -= velocidade;
     }
 
     public void verEstado(){
-        if (this.velocidade == 0){
-            System.out.println("Status: Parado");
-        } else if (this.velocidade > 0){
-            System.out.println("Em movimento a " + this.velocidade + "km/h.");
+        if (this.velocidade == 0 && this.ignicao == true){
+            System.out.println("Carro parado e ligado.");
+        }   else if (this.velocidade == 0 && this.ignicao == false)
+                System.out.println("Carro desligado.");
+                else if (this.velocidade > 0){
+                    System.out.println("Em movimento a " + this.velocidade + "km/h.");
         }
     }
 
-    public void status(){
-        System.out.println("Modelo: " + this.modelo);
-        System.out.println("Cor: " + this.cor);
-        System.out.println("Motor: " + this.motor);
+    public void detalhes(){
+        System.out.println("\nModelo: " + getModelo());
+        System.out.println("Cor: " + getCor());
+        System.out.println("Motor: " + getMotor());
+        if (isIgnicao()==true) System.out.println("Estado: Ligado");
+        else System.out.println("Estado: Desligado");
+        System.out.println("Velocidade Máxima: " + getMax_velocidade());
         verEstado();
     }
 
- }
+    public void ligar(){
+        if (getVelocidade()>0 || this.ignicao == true ) System.out.println("O carro já está ligado!");
+        else this.ignicao = true;
+    }
+
+    public void desligar(){
+        if (getVelocidade()>0) System.out.println("O carro está em movimento, pare o carro para desligar!!");
+        else if (this.ignicao == false) System.out.println("O carro já está desligado!");
+        else this.ignicao = false;
+    }
+}
