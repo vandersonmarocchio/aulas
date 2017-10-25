@@ -10,6 +10,13 @@ public class Carro {
     private double velocidade;
     private double max_velocidade;
 
+    /**
+     * Classe construtora com entrada de parametros
+     * @param modelo
+     * @param cor
+     * @param ignicao
+     * @param motor
+     */
     public Carro(String modelo, String cor, boolean ignicao, double motor) {
         this.modelo = modelo;
         this.cor = cor;
