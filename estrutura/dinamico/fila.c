@@ -1,4 +1,3 @@
-// Lista Encadeada
 
 #include <stdio.h>
 #include <stdlib.h>
